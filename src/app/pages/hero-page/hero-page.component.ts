@@ -1,21 +1,23 @@
-import { Component, signal } from '@angular/core';
+import { UpperCasePipe } from '@angular/common';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hero-page',
   templateUrl: './hero-page.component.html',
   styleUrl: './hero-page.component.css',
+  imports: [UpperCasePipe]
 })
 export class HeroPageComponent {
   name = signal('Ironman');
   age = signal(45);
 
-  getHeroDescription() {
-    return `${this.name} - ${this.age}`;
-  }
+  heroDescription = computed(() => `${this.name()} - ${this.age()}`)
+  capitalizedName = computed(() => this.name().toUpperCase())
+
 
   changeHero() {
     this.name.set('Spiderman');
-    this.age.set(22); // It cant use set method to update the signal value
+    this.age.set(22);
   }
 
   resetForm() {
@@ -24,6 +26,6 @@ export class HeroPageComponent {
   }
 
   changeAge() {
-    this.age.update(() => 65); // It cant use update method to update the signal value
+    this.age.set(65); // It cant use update method to update the signal value
   }
 }

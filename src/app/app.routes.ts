@@ -7,9 +7,12 @@ export const routes: Routes = [
     path: '',
     component: CounterComponent,
   },
-
   {
     path: 'hero',
     component: HeroPageComponent,
   },
+  {
+    path: '**',
+    redirectTo: () => '',
+  }
 ];
