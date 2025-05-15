@@ -1,0 +1,18 @@
+<h3>Listado fuertes</h3>
+<ul>
+  @for (character of characters(); track character.id; let idx = $index) {
+  @if(character.power > 1000) {
+  <li>
+    <span>{{ idx }} - {{ character.name }}</span>
+    <strong>({{ character.power }})</strong>
+  </li>
+  } @else {
+  <li><strong>Aquí no hay nadie</strong></li>
+  } }
+</ul>
+
+<!-- [ngClass]="{
+        'text-danger': character.power > 9000,
+        'text-warning': character.power > 5000 && character.power <= 9000,
+        'text-success': character.power <= 5000
+      }" -->

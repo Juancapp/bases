@@ -1,0 +1,52 @@
+<h1>Dragonball Page</h1>
+<hr />
+
+<section class="row">
+  <div class="col-12 col-sm-6">
+    <h3>Agregar: {{ name() }} de {{ power() }} de poder</h3>
+    <input
+      type="text"
+      [value]="name()"
+      class="form-control"
+      placeholder="Nombre"
+      (change)="name.set(txtName.value)"
+      (input)="name.set(txtName.value)"
+      #txtName
+    />
+    <input
+      type="number"
+      [value]="power()"
+      class="form-control mt-2"
+      placeholder="Poder"
+      (change)="power.set(+txtPower)"
+      (input)="power.set(+txtPower)"
+      #txtPower
+    />
+
+    <button (click)="addCharacter()" class="mt-2 btn btn-primary">
+      Agregar
+    </button>
+  </div>
+
+  <div class="col-12 col-sm-6">
+    <h3>Listado</h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+      @if(character.power > 1000) {
+      <li>
+        <span>{{ idx }} - {{ character.name }}</span>
+        <strong
+          [ngClass]="{
+            'text-danger': character.power > 9000,
+            'text-warning': character.power > 5000 && character.power <= 9000,
+            'text-success': character.power <= 5000
+          }"
+          >({{ character.power }})</strong
+        >
+      </li>
+      } @else {
+      <li><strong>Aquí no hay nadie</strong></li>
+      } }
+    </ul>
+  </div>
+</section>
