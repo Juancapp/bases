@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'dragonball-character-list',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './dragonball-character-list.component.html',
 })
 export class DragonBallCharacterListComponent {
-  characters: any;
+  characters = input.required();
 }
